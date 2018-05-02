@@ -7,6 +7,7 @@ var app = {
     subTitle: 'Put your life in the hands of a computer',
     options: []
 };
+
 var onFormSubmit = function onFormSubmit(e) {
     e.preventDefault();
 
