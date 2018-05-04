@@ -1,60 +1,74 @@
-console.log('app is running')
-
-const app ={
-    title:'Indecision App',
-    subTitle:'Put your life in the hands of a computer',
-    options:[]
-};
-const onFormSubmit = (e) =>{
-    e.preventDefault();
-    
-    const option = e.target.elements.option.value;
-    //console.log(option)
-    if (option){
-        app.options.push(option);
-        e.target.elements.option.value ='';
-        render();
+class IndecisionApp extends React.Component{
+    render(){
+        const title = 'Indecision App'
+        const subtitle = 'Put your life in the hands of a computer'
+        const options = ['thing one','thing two','thing three','thing four']
+        return (
+            <div>
+                <Header title={title} subtitle={subtitle}/>
+                <Action />
+                <Options options={options}/>
+                <AddOption/>
+            </div>
+        ) ;
     }
-};
-
-const removeAll = () => {
-    app.options = [];
-    render();
 }
 
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random() * app.options.length);
-    const option = app.options[randomNum]
-    console.log(option)
+
+class Header extends React.Component{
+    render(){
+        return (
+            <div>
+                <h1> {this.props.title}</h1>
+                <h2>{this.props.subtitle} </h2>
+            </div>
+        )
+    }
+
 }
 
-const appRoot = document.getElementById("app")
-
-
-const render = () => {
-    const template = (
-    <div>
-    {app.title && <h1> {app.title}</h1> }
-    {app.subTitle && <p>{app.subTitle}</p>}
-    <p>{app.options.length > 0 ? "Here are your options":"No options" }</p>
-    
-    <button disabled={app.options.length == 0 ?true:false} onClick={onMakeDecision}>What Should I Do?</button>
-    <button onClick={removeAll}>Remove All</button>
-   
-    <ol>
-    {
-        app.options.map((opt)=><li key={opt}> {opt}</li>)
+class Action extends React.Component{
+    render(){
+        return (
+            <div>
+                <button>What should I do?</button>
+            </div>
+        ) 
     }
-    </ol>
-    <form onSubmit={onFormSubmit}>
-        <input type="text" name="option"/>
-        <button >Add Option</button>
-    </form>
-        
-    </div>
-);
+}
 
-    ReactDOM.render(template,appRoot);
-};
+class Options extends React.Component{
+    render(){
+        return (
+            <div>
+                {this.props.options.map((option) => <Option option={option}/>) }
+            </div>
+        ) ;
+    }
+}
 
-render();
+class Option extends React.Component{
+    render(){
+        return (
+            <div>
+                <p>{this.props.option}</p>
+            </div>
+        ) ;
+    }
+}
+
+class AddOption extends React.Component{
+    render(){
+        return (
+            <div>
+                <input type="text"></input>
+                <button>Submit</button>
+            </div>
+        ) ;
+    }
+}
+
+
+
+ReactDOM.render(<IndecisionApp/>, document.getElementById('app'))
+
