@@ -2,11 +2,17 @@
 Description:
   This is an app that helps make a decision, from a list of user input decisions. It is built in react.
   
-Installation:
+Install packages:
+```shell
   npm install
-  
+```
+Build bundle:
+``` shell
   yarn run build
-  
+  ```
+Run development server:
+```shell
   yarn run dev-server
-  
-  got to 127.0.0.1:8080
+```
+Visit 127.0.0.1:8080 in browser
+ 
