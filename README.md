@@ -6,10 +6,7 @@ Install packages:
 ```shell
   npm install
 ```
-Build bundle:
-``` shell
-  yarn run build
-  ```
+
 Run development server:
 ```shell
   yarn run dev-server
